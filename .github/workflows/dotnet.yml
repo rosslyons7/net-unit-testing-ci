@@ -39,6 +39,8 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build
+      - name: enter test directory
+        run: cd PrimeService.Tests
       - name: Test with the dotnet CLI
         run: dotnet test
 
