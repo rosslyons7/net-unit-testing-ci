@@ -48,9 +48,8 @@ namespace PrimeService.Tests
         [TestCase(5)]
         [TestCase(11)]
         [TestCase(13)]
-        [TestCase(8)]
+        [TestCase(59)]
         public void IsPrime_InputIsPrime_ReturnTrue(int x) {
-            System.Console.WriteLine("Should FAIL");
             var result = _primeService.IsPrime(x);
             Assert.That(result == true);
         }
