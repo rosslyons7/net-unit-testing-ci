@@ -18,8 +18,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v1.7.2
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore
       - name: Build
@@ -39,9 +37,7 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build
-      - name: enter test directory
-        run: cd PrimeService.Tests
       - name: Test with the dotnet CLI
-        run: dotnet test
+        run: dotnet test ~/PrimeService.Tests/PrimeService.Tests.csproj
 
           
