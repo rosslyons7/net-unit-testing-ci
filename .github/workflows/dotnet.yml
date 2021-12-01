@@ -2,9 +2,9 @@ name: dotnet package
 
 on:
   push:
-    branches: [ master, setup-tests ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, setup-tests ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -22,9 +22,13 @@ jobs:
         run: dotnet restore
       - name: Build
         run: dotnet build --configuration Release --no-restore
-      - name: Test
-        run: dotnet test --no-restore --verbosity normal
+      - uses: actions/upload-artifact@main
+        with:
+            name: webpack artifacts
+            path: public/
+
   test:
+    needs: build
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,11 +36,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup dotnet
+      - uses: actions/download-artifact@main
+        with:
+            name: webpack artifacts
+            path: public
+      - name: Setup dotnet ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v1
       - name: Install dependencies
         run: dotnet restore
-      - name: Build
-        run: dotnet build
       - name: Test with the dotnet CLI
         run: dotnet test ./PrimeService.Tests/PrimeService.Tests.csproj
