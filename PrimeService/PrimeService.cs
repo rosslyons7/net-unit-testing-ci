@@ -6,8 +6,6 @@ namespace PrimeService
 
         public bool IsPrime(int x) {
 
-            return false;
-
             if (x < 2) return false;
 
             var upper = Math.Floor(Math.Sqrt(x));
