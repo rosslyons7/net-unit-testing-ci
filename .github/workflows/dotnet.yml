@@ -2,9 +2,9 @@ name: dotnet package
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, setup-artifacts ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, setup-artifacts]
 
 jobs:
   build:
