@@ -29,6 +29,7 @@ jobs:
     strategy:
       matrix:
         dotnet-version: ['3.1.x', '5.0.x' ]
+
     steps:
       - uses: actions/checkout@v2
       - name: Setup dotnet
@@ -39,5 +40,3 @@ jobs:
         run: dotnet build
       - name: Test with the dotnet CLI
         run: dotnet test ./PrimeService.Tests/PrimeService.Tests.csproj
-
-          
